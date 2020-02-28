@@ -44,38 +44,7 @@
                     </div>
                     <div class="card-body">
                         <ul id="tableList" class="list-group">
-                            <li class="list-group-item mt-4">
-                                <h2>Table #1</h2>
-                                <hr>
-                                <h2>ID:</h2>
-                                <h2>Name:</h2>
-                                <h2>Email:</h2>
-                                <h2>Phone:</h2>
-                            </li>
-                            <li class="list-group-item mt-4">
-                                <h2>Table #2</h2>
-                                <hr>
-                                <h2>ID:</h2>
-                                <h2>Name:</h2>
-                                <h2>Email:</h2>
-                                <h2>Phone:</h2>
-                            </li>
-                            <li class="list-group-item mt-4">
-                                <h2>Table #3</h2>
-                                <hr>
-                                <h2>ID:</h2>
-                                <h2>Name:</h2>
-                                <h2>Email:</h2>
-                                <h2>Phone:</h2>
-                            </li>
-                            <li class="list-group-item mt-4">
-                                <h2>Table #4</h2>
-                                <hr>
-                                <h2>ID:</h2>
-                                <h2>Name:</h2>
-                                <h2>Email:</h2>
-                                <h2>Phone:</h2>
-                            </li>
+
                         </ul>
                     </div>
                 </div>
@@ -102,9 +71,33 @@
             </div>
         </footer>
     </div>
-<script type="text/javascript">
+    <script type="text/javascript">
 
-    
-</script>
+        $(document).ready(function (event) {
+
+
+
+            // Question: What does this code do??
+            $.get("/api/tables")
+                .then(function (data) {
+                    var count = 0;
+                    for (i = 0; i < data.length; i++) {
+
+                        count++
+                        var tableNumber = $("<h2>").text(`Table #: ${count}`);
+                        var list = $("<li>").addClass("list-group-item");
+                        var ID = $("<h2>").text(`ID: ${data[i].customerID}`);
+                        var ID = $("<h2>").text(`ID: ${data[i].customerID}`);
+                        var name = $("<h2>").text(`Name: ${data[i].customerName}`);
+                        var email = $("<h2>").text(`Email: ${data[i].customerEmail}`);
+                        var phone = $("<h2>").text(`Phone: ${data[i].customerPhone}`);
+                        list.append(tableNumber, ID, name, email, phone);
+                        $("#tableList").append(list);
+                    }
+
+                });
+        });
+    </script>
 </body>
+
 </html>
