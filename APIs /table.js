@@ -1,17 +1,8 @@
-const table = [
-  {
-    id: "1",
-    name: "elena",
-    email: "elena@gmail.com",
-    phone: "540-236-2223"
-  }
-];
-
-const waitlist = [];
-
-function add(newReservation) {
-  const resSize = table.length;
+function addreservation(reserve, waitList, newReservation) {
+  const resSize = reserve.length;
   if (resSize < 5) {
-    table.push(newReservation);
-  } else waitlist.push(newReservation);
+    reserve.push(newReservation);
+  } else waitList.push(newReservation);
 }
+
+module.exports = addreservation;
