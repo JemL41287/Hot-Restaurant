@@ -49,6 +49,7 @@ app.get("/api/waitlist", (req, res) => {
 app.post("/reserve", function (req, res) {
 
     var newReservation = req.body;
+    console.log(newReservation)
     addreservation(reserve, waitList, newReservation);
 });
 
