@@ -1,5 +1,7 @@
 // Dependencies
-const express = req("express");
+const express = require("express");
+const addreservation = require("./APIs/table");
+var path = require("path");
 
 //Set up Express
 var app = express();
@@ -16,16 +18,20 @@ const waitList = [];
 
 
 // Routes
-app.get("/home", (req, res) => {
-    res.sendFile(path.join(__dirname, "home.html"));
+app.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, "/home.html"));
 });
 
-app.get("/tables", (req, res) => {
-    res.sendFile(path.join(__dirname, "tables.html"));
+app.get("/home.html", (req, res) => {
+    res.sendFile(path.join(__dirname, "/home.html"));
 });
 
-app.get("/reserve", (req, res) => {
-    res.sendFile(path.join(__dirname, "reserve.html"));
+app.get("/tables.html", (req, res) => {
+    res.sendFile(path.join(__dirname, "/tables.html"));
+});
+
+app.get("/reserve.html", (req, res) => {
+    res.sendFile(path.join(__dirname, "/reserve.html"));
 });
 
 
@@ -41,7 +47,9 @@ app.get("/api/waitlist", (req, res) => {
 
 
 app.post("/reserve", function (req, res) {
-    var newReservation = req.body
+
+    var newReservation = req.body;
+    addreservation(reserve, waitList, newReservation);
 });
 
 
