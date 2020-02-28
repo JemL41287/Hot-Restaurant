@@ -28,6 +28,26 @@ app.get("/reserve", (req, res) => {
     res.sendFile(path.join(__dirname, "reserve.html"));
 });
 
-app.post("/reserve", function(req, res) {
+
+//send api
+app.get("/api/tables", (req, res) => {
+    return res.json(reserve);
+});
+
+app.get("/api/waitlist", (req, res) => {
+    return res.json(waitList);
+});
+
+
+
+app.post("/reserve", function (req, res) {
     var newReservation = req.body
-  });
+});
+
+
+
+
+// Starts the server to begin listening
+app.listen(PORT, () => {
+    console.log("App listening on PORT " + PORT);
+});
